@@ -1,0 +1,31 @@
+.detail {
+  justify-content: center;
+}
+
+.detail .detail_title {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.detail .detail_summary {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 78.2%;
+  position: relative;
+  left: 162px;
+  top: 50px;
+  font-weight: 500;
+  background-color: azure;
+}
+
+.detail .detail_background {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  top: -38px;
+  left: 162px;
+  z-index: -1;
+}
