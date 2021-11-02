@@ -7,6 +7,7 @@ class Home extends React.Component {
   state = {
     isLoding: true,
     movies: [],
+    id: "",
   };
 
   getMovies = async () => {
@@ -22,16 +23,23 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.getMovies();
+    const { location, history } = this.props;
+    if (location.state === undefined) {
+      alert("잘못된 접근입니다.");
+      history.push("/");
+    } else if (location.state.isAuth === true) {
+      this.setState({ id: location.state.id });
+      this.getMovies();
+    }
   }
 
   render() {
-    const { isLoding, movies } = this.state;
+    const { isLoding, movies, id } = this.state;
     return (
       <section className="container">
         {isLoding ? (
           <div className="loader">
-            <span className="loader_text">Loading...</span>
+            <span className="loader_text">Hello {id} !</span>
           </div>
         ) : (
           <div className="movies">
