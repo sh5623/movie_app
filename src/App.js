@@ -4,6 +4,7 @@ import About from "./routes/About";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Detail from "./routes/Detail";
+import Tour from "./routes/Tour";
 import Navigation from "./components/Navigation";
 import "./App.css";
 
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" exact={true} component={Login}></Route>
       <Route path="/home" component={Home}></Route>
       <Route path="/about" component={About}></Route>
+      <Route path="/tour" component={Tour}></Route>
       <Route path="/movie/:id" component={Detail}></Route>
     </HashRouter>
   );
