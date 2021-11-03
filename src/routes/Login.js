@@ -10,23 +10,40 @@ class Login extends React.Component {
   };
 
   getLogin = async ({ id, password }) => {
-    try {
-      const {
-        data: { result },
-      } = await axios.get(
-        `http://146.56.174.150:8080/user/api/get/${id}/${password}`
-      );
+    const optionAxios = {
+      headers: {
+        "content-Type": "application/json",
+      },
+    };
 
-      if (result === true) {
-        alert("Login Success");
+    await axios
+      .post(
+        `http://146.56.174.150:8080/user/login`,
+        {
+          userId: id,
+          userPassword: password,
+        },
+        optionAxios
+      )
+      .then((res) => {
+        if (res.data.result === true) {
+          alert("Login Success");
 
-        this.setState({ isAuth: true });
-      } else {
-        alert("Login False");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+          this.setState({ isAuth: true });
+        }
+      })
+      .catch((error) => {
+        alert(error.response.data.error);
+      });
+
+    /* if (result === true) {
+      alert("Login Success");
+
+      this.setState({ isAuth: true });
+    } else {
+      debugger;
+      alert("Login False");
+    } */
   };
 
   handleChange = ({ target }) => {
