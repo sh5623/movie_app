@@ -1,26 +1,19 @@
 import React from "react";
 import axios from "axios";
 import "./Home.css";
+import TourList from "./TourList";
 
 class Tour extends React.Component {
   state = {
-    serviceKey:
-      "96EIT1koaTBt2OfbhSFR9PyKGOKS%2FAMqgeugwN1XT2QwjnE97ZiG1uszeNCPJquN2y2XIYC8GX8BlAcpvUcusw%3D%3D",
-    perPage: 10,
-    page: 1,
-    _type: "json",
     tourData: [],
+    isLoding: false,
   };
 
-  getMovies = async () => {
-    const { serviceKey, perPage, page, _type } = this.state;
+  getTours = async () => {
     await axios
-      .get(
-        `https://api.odcloud.kr/api/15003416/v1/uddi:a635e6c7-82cf-4714-b002-c7cf4cb20121_201609071527?serviceKey=${serviceKey}&perPage=${perPage}&page=${page}&_type=${_type}`
-      )
+      .get(`http://146.56.174.150:8080/user/test`)
       .then((res) => {
-        this.setState({ tourData: res.data.data });
-        console.log(this.state.tourData);
+        this.setState({ tourData: res.data.data, isLoding: true });
       })
       .catch((error) => {
         alert(error.message);
@@ -28,15 +21,34 @@ class Tour extends React.Component {
   };
 
   componentDidMount() {
-    this.getMovies();
+    this.getTours();
   }
 
   render() {
+    const { isLoding, tourData } = this.state;
     return (
       <section className="container">
-        <div className="movies">
-          <span>Tour</span>
-        </div>
+        {!isLoding ? (
+          <div className="loader">
+            <span className="loader_text">Now Loading ...</span>
+          </div>
+        ) : (
+          <div className="movies">
+            {tourData.map((tour, index) => (
+              <TourList
+                key={index}
+                id={index}
+                name={tour.정보명}
+                region={tour.지역}
+                address={tour.주소}
+                phoneNumber={tour.문의및안내}
+                firstClass={tour.대분류}
+                secondClass={tour.중분류}
+                thirdClass={tour.소분류}
+              />
+            ))}
+          </div>
+        )}
       </section>
     );
   }
