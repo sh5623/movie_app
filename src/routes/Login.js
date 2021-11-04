@@ -35,15 +35,6 @@ class Login extends React.Component {
       .catch((error) => {
         alert(error.response.data.error);
       });
-
-    /* if (result === true) {
-      alert("Login Success");
-
-      this.setState({ isAuth: true });
-    } else {
-      debugger;
-      alert("Login False");
-    } */
   };
 
   handleChange = ({ target }) => {
