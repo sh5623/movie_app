@@ -10,7 +10,6 @@ class TourDetail extends React.Component {
   }
   render() {
     const { location } = this.props;
-    debugger;
     if (location.state) {
       return (
         <div className="detail">
