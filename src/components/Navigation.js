@@ -11,7 +11,7 @@ function Navigation() {
   };
   function DoLogout(props) {
     axios
-      .post("http://localhost:8080/user/logout", optionAxios)
+      .post("http://146.56.174.150:8080/user/logout", optionAxios)
       .then((res) => {})
       .catch((error) => {});
   }
