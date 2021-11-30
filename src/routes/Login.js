@@ -18,7 +18,7 @@ class Login extends React.Component {
 
     await axios
       .post(
-        `http://146.56.174.150:8080/user/login`,
+        `http://localhost:8080/user/login`,
         {
           userId: id,
           userPassword: password,
@@ -26,14 +26,15 @@ class Login extends React.Component {
         optionAxios
       )
       .then((res) => {
+        debugger;
         if (res.data.result === true) {
           alert("Login Success");
-
           this.setState({ isAuth: true });
         }
       })
       .catch((error) => {
-        alert(error.response.data.error);
+        debugger;
+        // alert(error.response.data.error);
       });
   };
 

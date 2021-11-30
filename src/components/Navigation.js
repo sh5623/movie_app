@@ -7,11 +7,12 @@ function Navigation() {
   const optionAxios = {
     headers: {
       "content-Type": "application/json",
+      "x-access-token": "",
     },
   };
   function DoLogout(props) {
     axios
-      .post("http://146.56.174.150:8080/user/logout", optionAxios)
+      .post("http://localhost:8080/user/logout", optionAxios)
       .then((res) => {})
       .catch((error) => {});
   }

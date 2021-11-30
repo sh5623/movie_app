@@ -11,7 +11,7 @@ class Tour extends React.Component {
 
   getTours = async () => {
     await axios
-      .get(`http://146.56.174.150:8080/user/test`)
+      .get(`http://localhost:8080/user/test`)
       .then((res) => {
         this.setState({ tourData: res.data.data, isLoding: true });
       })
